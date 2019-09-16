@@ -10,6 +10,8 @@ const Movie = props => {
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
+    const addToSavedList = props.addToSavedList;
+
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
       .then(response => {
@@ -18,13 +20,13 @@ const Movie = props => {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, [props.addToSavedList, props.match.params.id]);
 
   // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
+  const saveMovie = () => {
+    const addToSavedList = props.addToSavedList;
+    addToSavedList(movie)
+  }
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -40,7 +42,9 @@ const Movie = props => {
         metascore={metascore}
         stars={stars}
       />
-      <div className="save-button">Save</div>
+      <div className="save-button" onClick={evt=> saveMovie(movie)}>
+        Save
+      </div>
     </div>
   );
 };
