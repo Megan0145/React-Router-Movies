@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 
 const MovieList = props => {
   const [movies, setMovies] = useState([]);
-  console.log(props);
+  
   useEffect(() => {
     const getMovies = () => {
       axios
