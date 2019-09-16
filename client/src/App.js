@@ -21,10 +21,8 @@ const App = () => {
         path="/movies/:id"  
           render={props => (
             <Movie
-              addToSavedList={addToSavedList}
-              match={props.match}
-              history={props.history}
-              location={props.location}
+            {...props}
+            addToSavedList={addToSavedList}
             />
           )}
         />
